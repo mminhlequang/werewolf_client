@@ -7,10 +7,17 @@ class AppEndpoint {
   static const int receiveTimeout = 3000;
   static const String keyAuthorization = "Authorization";
 
-  static const int SUCCESS = 200;
-  static const int ERROR_TOKEN = 401;
-  static const int ERROR_VALIDATE = 422;
-  static const int ERROR_SERVER = 500;
-  static const int ERROR_DISCONNECT = -1;
+  static const String GET_CONFIG = "/api/getConfig";
 
+  static const String POST_SIGN_UP = "/api/post/signUp";
+
+  static const String POST_SIGN_IN = "/api/post/signIn";
+
+  static const String POST_SIGN_IN_WITH_GOOGLE = "/api/post/signInWithGoogle";
+
+  static const String POST_SIGN_IN_WITH_FACEBOOK = "/api/post/signInWithFacebook";
+
+  static const String POST_SIGN_IN_WITH_APPLE = "/api/post/signInWithApple";
+
+  static const String GET_PROFILE = "/api/getProfile";
 }
