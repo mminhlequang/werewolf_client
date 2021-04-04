@@ -16,7 +16,7 @@ class ConfigRepository {
 
   AppApiImp _api;
 
-  Future<NetworkResponse<ConfigModel>> getConfig() async {
+  Future<NetworkResponse<ConfigModel>> postSignIn() async {
     return await _api.getConfig((data) => ConfigModel.fromJson(data));
   }
 }

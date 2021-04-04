@@ -21,11 +21,14 @@ dependencies:
   safe_config: ^2.0.2
   get: ^3.26.0
   dio: ^3.0.10
+  socket_io_client: ^0.9.12
+  get_storage: ^1.4.0
 
 flutter:
   uses-material-design: true
   assets:
     - assets/images/
+    - assets/images/icons/
 
   fonts:
     - family: Fira

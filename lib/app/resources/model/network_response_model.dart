@@ -23,9 +23,14 @@ class NetworkResponse<T> {
   NetworkResponse({this.success, this.msg, this.data, this.code});
 
   factory NetworkResponse.fromResponse(Dio.Response response, {converter}) {
-    return NetworkResponse._fromJson(jsonDecode(response.data),
-        converter: converter)
-      ..code = response.statusCode;
+    try {
+      return NetworkResponse._fromJson(jsonDecode(jsonEncode(response.data)),
+          converter: converter)
+        ..code = response.statusCode;
+    } catch (e) {
+      log("Error NetworkResponse.fromResponse: $e");
+      return NetworkResponse.withErrorConvert(e);
+    }
   }
 
   NetworkResponse._fromJson(dynamic json, {converter}) {
@@ -38,23 +43,31 @@ class NetworkResponse<T> {
 
   Map<String, dynamic> toJson() {
     var map = <String, dynamic>{};
+    map["code"] = code;
     map["success"] = success;
     map["msg"] = msg;
     map["data"] = data;
     return map;
   }
 
-  NetworkResponse.withError(Dio.DioError error) {
+  NetworkResponse.withErrorRequest(Dio.DioError error) {
     try {
-      print("${error.type}");
       Dio.Response response = error.response;
+      log("${response?.request?.path ?? ""}\nDio error: $error\nData: ${response?.data ?? ""}");
       this.code = response.statusCode;
-      this.msg = 'msg_disconnect'.tr;
+    } catch (e) {
+      log("Error NetworkResponse.withErrorRequest: $e");
+    } finally {
+      this.msg = 'msg_error_request'.tr;
       this.success = false;
       this.data = null;
-    } catch (e) {
-      log("Error NetworkResponse.withError: $e");
     }
+  }
+
+  NetworkResponse.withErrorConvert(error) {
+    this.msg = 'msg_error_convert'.tr;
+    this.success = false;
+    this.data = null;
   }
 
   NetworkResponse.withDisconnect() {
