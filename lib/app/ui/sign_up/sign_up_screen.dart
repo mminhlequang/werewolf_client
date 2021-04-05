@@ -42,7 +42,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                 Text(
                                   'Hi wolf!',
                                   style: STYLE_SMALL_BOLD.copyWith(
-                                      fontSize: 32, color: COLOR_PRIMARY_DARK),
+                                      fontSize: 32, color: TEXT_COLOR),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(
@@ -51,7 +51,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                 Text(
                                   'sign_up_description'.tr,
                                   style: STYLE_LARGE.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(
@@ -62,7 +62,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                   hint: 'Email...',
                                   inputType: TextInputType.emailAddress,
                                   hintStyle: STYLE_MEDIUM.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                 ),
                                 const SizedBox(
                                   height: 20,
@@ -71,7 +71,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                   controller: _controller.usernameController,
                                   hint: 'Username...',
                                   hintStyle: STYLE_MEDIUM.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                 ),
                                 const SizedBox(
                                   height: 20,
@@ -83,20 +83,20 @@ class SignUpScreen extends GetView<SignUpController> {
                                       ? IconButton(
                                           icon: Icon(
                                             Icons.visibility_off_rounded,
-                                            color: COLOR_PRIMARY_LIGHT,
+                                            color: TEXT_HINT_COLOR,
                                           ),
                                           onPressed: () => _controller
                                               .obscureText.value = false)
                                       : IconButton(
                                           icon: Icon(
                                               Icons.remove_red_eye_rounded,
-                                              color: COLOR_PRIMARY_LIGHT),
+                                              color: TEXT_HINT_COLOR),
                                           onPressed: () => _controller
                                               .obscureText.value = true),
                                   obscureText: _controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
                                   hintStyle: STYLE_MEDIUM.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                 ),
                                 const SizedBox(
                                   height: 65,
@@ -129,7 +129,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                       Expanded(
                                           child: Container(
                                         height: 0.8,
-                                        color: COLOR_PRIMARY_LIGHT,
+                                        color: TEXT_HINT_COLOR,
                                         width: Get.width,
                                       )),
                                       Padding(
@@ -146,7 +146,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                       Expanded(
                                           child: Container(
                                         height: 0.8,
-                                        color: COLOR_PRIMARY_LIGHT,
+                                        color: TEXT_HINT_COLOR,
                                         width: Get.width,
                                       )),
                                     ],
@@ -156,7 +156,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                   child: Text(
                                     'social_media_login'.tr,
                                     style: STYLE_SMALL_BOLD.copyWith(
-                                        color: COLOR_PRIMARY_LIGHT),
+                                        color: TEXT_HINT_COLOR),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -170,7 +170,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                     InkWell(
                                         onTap: () {},
                                         child: Image.asset(
-                                          AppImages.icFacebook,
+                                          AppImages.icGoogle,
                                           width: 42,
                                           height: 42,
                                         )),
@@ -181,8 +181,8 @@ class SignUpScreen extends GetView<SignUpController> {
                                       onTap: () {},
                                       child: Image.asset(
                                         AppImages.icFacebook,
-                                        width: 42,
-                                        height: 42,
+                                        width: 46,
+                                        height: 46,
                                       ),
                                     ),
                                   ],
@@ -196,7 +196,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                     Text(
                                       'already_have_an_account'.tr,
                                       style: STYLE_SMALL_BOLD.copyWith(
-                                          color: COLOR_PRIMARY_LIGHT),
+                                          color: TEXT_HINT_COLOR),
                                       textAlign: TextAlign.center,
                                     ),
                                     const SizedBox(

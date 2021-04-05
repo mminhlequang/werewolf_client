@@ -42,5 +42,5 @@ class WidgetInputUnderline extends StatelessWidget {
   }
 
   final InputBorder _border = UnderlineInputBorder(
-      borderSide: BorderSide(width: 2, color: COLOR_PRIMARY_LIGHT));
+      borderSide: BorderSide(width: 2, color: TEXT_HINT_COLOR));
 }

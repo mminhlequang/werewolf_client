@@ -42,7 +42,7 @@ class SignInScreen extends GetView<SignInController> {
                                 Text(
                                   'Hi wolf!',
                                   style: STYLE_SMALL_BOLD.copyWith(
-                                      fontSize: 32, color: COLOR_PRIMARY_DARK),
+                                      fontSize: 32),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(
@@ -51,7 +51,7 @@ class SignInScreen extends GetView<SignInController> {
                                 Text(
                                   'sign_in_description'.tr,
                                   style: STYLE_LARGE.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(
@@ -61,7 +61,7 @@ class SignInScreen extends GetView<SignInController> {
                                   controller: _controller.usernameController,
                                   hint: 'Username...',
                                   hintStyle: STYLE_MEDIUM.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                 ),
                                 const SizedBox(
                                   height: 20,
@@ -73,20 +73,20 @@ class SignInScreen extends GetView<SignInController> {
                                       ? IconButton(
                                           icon: Icon(
                                             Icons.visibility_off_rounded,
-                                            color: COLOR_PRIMARY_LIGHT,
+                                            color: TEXT_HINT_COLOR,
                                           ),
                                           onPressed: () => _controller
                                               .obscureText.value = false)
                                       : IconButton(
                                           icon: Icon(
                                               Icons.remove_red_eye_rounded,
-                                              color: COLOR_PRIMARY_LIGHT),
+                                              color: TEXT_HINT_COLOR),
                                           onPressed: () => _controller
                                               .obscureText.value = true),
                                   obscureText: _controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
                                   hintStyle: STYLE_MEDIUM.copyWith(
-                                      color: COLOR_PRIMARY_LIGHT),
+                                      color: TEXT_HINT_COLOR),
                                 ),
                                 const SizedBox(
                                   height: 65,
@@ -130,7 +130,7 @@ class SignInScreen extends GetView<SignInController> {
                                       Expanded(
                                           child: Container(
                                         height: 0.8,
-                                        color: COLOR_PRIMARY_LIGHT,
+                                        color: TEXT_HINT_COLOR,
                                         width: Get.width,
                                       )),
                                       Padding(
@@ -147,7 +147,7 @@ class SignInScreen extends GetView<SignInController> {
                                       Expanded(
                                           child: Container(
                                         height: 0.8,
-                                        color: COLOR_PRIMARY_LIGHT,
+                                        color: TEXT_HINT_COLOR,
                                         width: Get.width,
                                       )),
                                     ],
@@ -157,7 +157,7 @@ class SignInScreen extends GetView<SignInController> {
                                   child: Text(
                                     'social_media_login'.tr,
                                     style: STYLE_SMALL_BOLD.copyWith(
-                                        color: COLOR_PRIMARY_LIGHT),
+                                        color: TEXT_HINT_COLOR),
                                     textAlign: TextAlign.center,
                                   ),
                                 ),
@@ -171,7 +171,7 @@ class SignInScreen extends GetView<SignInController> {
                                     InkWell(
                                         onTap: () {},
                                         child: Image.asset(
-                                          AppImages.icFacebook,
+                                          AppImages.icGoogle,
                                           width: 42,
                                           height: 42,
                                         )),
@@ -182,8 +182,8 @@ class SignInScreen extends GetView<SignInController> {
                                       onTap: () {},
                                       child: Image.asset(
                                         AppImages.icFacebook,
-                                        width: 42,
-                                        height: 42,
+                                        width: 46,
+                                        height: 46,
                                       ),
                                     ),
                                   ],
@@ -197,7 +197,7 @@ class SignInScreen extends GetView<SignInController> {
                                     Text(
                                       'do_not_have_an_account'.tr,
                                       style: STYLE_SMALL_BOLD.copyWith(
-                                          color: COLOR_PRIMARY_LIGHT),
+                                          color: TEXT_HINT_COLOR),
                                       textAlign: TextAlign.center,
                                     ),
                                     const SizedBox(

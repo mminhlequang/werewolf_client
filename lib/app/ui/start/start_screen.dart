@@ -31,7 +31,7 @@ class StartScreen extends GetView {
                     Text(
                       'welcome'.tr,
                       style: STYLE_SMALL_BOLD.copyWith(
-                          fontSize: 32, color: COLOR_PRIMARY_DARK),
+                          fontSize: 32, color: TEXT_COLOR),
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
@@ -39,7 +39,7 @@ class StartScreen extends GetView {
                     ),
                     Text(
                       'welcome_description'.tr,
-                      style: STYLE_LARGE.copyWith(color: COLOR_PRIMARY_LIGHT),
+                      style: STYLE_LARGE.copyWith(color: TEXT_HINT_COLOR),
                       textAlign: TextAlign.center,
                     ),
                   ],

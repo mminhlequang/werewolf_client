@@ -9,7 +9,7 @@ class WidgetBackButton extends StatelessWidget {
     return IconButton(
         icon: Image.asset(
           AppImages.icArrowBack,
-          color: COLOR_PRIMARY,
+          color: TEXT_COLOR,
         ),
         onPressed: () => Get.back());
   }

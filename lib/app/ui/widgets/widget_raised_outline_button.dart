@@ -23,28 +23,26 @@ class WidgetRaisedOutlineButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: width,
-      height: height,
-      decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: borderRadius,
-          border: Border.all(
-              color: color ?? Colors.black54, width: borderWidth ?? 2),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey[500],
-              offset: Offset(0.0, 1.5),
-              blurRadius: 1.5,
-            ),
-          ]),
-      child: Material(
-        color: Colors.transparent,
-        child: InkWell(
-            onTap: onPressed,
-            child: Center(
-              child: child,
-            )),
+    return PhysicalModel(
+      elevation: 8,
+      color: Colors.black54,
+      borderRadius: borderRadius,
+      child: Container(
+        width: width,
+        height: height,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: borderRadius,
+            border: Border.all(
+                color: color ?? Colors.black54, width: borderWidth ?? 2)),
+        child: Material(
+          color: Colors.transparent,
+          child: InkWell(
+              onTap: onPressed,
+              child: Center(
+                child: child,
+              )),
+        ),
       ),
     );
   }
