@@ -172,7 +172,10 @@ class SignInScreen extends GetView<SignInController> {
                                   mainAxisAlignment: MainAxisAlignment.center,
                                   children: [
                                     InkWell(
-                                        onTap: () {},
+                                        onTap: () {
+                                          FocusScope.of(context).unfocus();
+                                          controller.signIn(SignInType.google);
+                                        },
                                         child: Image.asset(
                                           AppImages.icGoogle,
                                           width: 42,
@@ -182,7 +185,10 @@ class SignInScreen extends GetView<SignInController> {
                                       width: 16,
                                     ),
                                     InkWell(
-                                      onTap: () {},
+                                      onTap: () {
+                                        FocusScope.of(context).unfocus();
+                                        controller.signIn(SignInType.facebook);
+                                      },
                                       child: Image.asset(
                                         AppImages.icFacebook,
                                         width: 46,

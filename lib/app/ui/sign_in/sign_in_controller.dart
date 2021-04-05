@@ -1,8 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/resources/repository/auth_repository.dart';
 import 'package:werewolf_client/app/resources/resources.dart';
 import 'package:werewolf_client/app/routes/app_pages.dart';
 import 'package:werewolf_client/app/ui/base/base_controller.dart';
@@ -31,6 +28,16 @@ class SignInController extends BaseController {
         if (!formKey.currentState.validate()) return;
         response = await _authRepository.postSignIn(
             username: username, password: password, type: type);
+        easyLoading(false);
+        break;
+      case SignInType.facebook:
+        LoginResult result = await SocialService().signInFacebook();
+        response = await _authRepository.postSignIn(result: result, type: type);
+        easyLoading(false);
+        break;
+      case SignInType.google:
+        LoginResult result = await SocialService().signInGoogle();
+        response = await _authRepository.postSignIn(result: result, type: type);
         easyLoading(false);
         break;
       default:
