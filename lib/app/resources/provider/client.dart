@@ -39,6 +39,7 @@ class AppClients extends DioForNative {
       case AppClients.POST:
         if (options.data is Map) {
           log("${options.method}: ${options.uri}\nParams: ${options.data}");
+          options.contentType = 'application/x-www-form-urlencoded';
         } else if (options.data is FormData) {
           log("${options.method}: ${options.uri}\nParams: ${options.data.fields}");
         }

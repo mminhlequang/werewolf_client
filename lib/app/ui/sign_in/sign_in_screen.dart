@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/constants/app_images.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
+import 'package:werewolf_client/app/resources/repository/auth_repository.dart';
 import 'package:werewolf_client/app/ui/widgets/widget_back_button.dart';
 import 'package:werewolf_client/app/ui/widgets/widget_input_underline.dart';
 import 'package:werewolf_client/app/ui/widgets/widget_raised_gradient_button.dart';
@@ -10,8 +11,6 @@ import 'package:werewolf_client/app/routes/app_pages.dart';
 import 'sign_in_controller.dart';
 
 class SignInScreen extends GetView<SignInController> {
-  SignInController _controller = Get.find<SignInController>();
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,7 +32,7 @@ class SignInScreen extends GetView<SignInController> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(40, 30, 40, 80),
                       child: Form(
-                        key: _controller.formKey,
+                        key: controller.formKey,
                         child: GetX(
                           builder: (_) {
                             return Column(
@@ -41,8 +40,8 @@ class SignInScreen extends GetView<SignInController> {
                               children: [
                                 Text(
                                   'Hi wolf!',
-                                  style: STYLE_SMALL_BOLD.copyWith(
-                                      fontSize: 32),
+                                  style:
+                                      STYLE_SMALL_BOLD.copyWith(fontSize: 32),
                                   textAlign: TextAlign.center,
                                 ),
                                 const SizedBox(
@@ -58,7 +57,7 @@ class SignInScreen extends GetView<SignInController> {
                                   height: 65,
                                 ),
                                 WidgetInputUnderline(
-                                  controller: _controller.usernameController,
+                                  controller: controller.usernameController,
                                   hint: 'Username...',
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
@@ -67,23 +66,23 @@ class SignInScreen extends GetView<SignInController> {
                                   height: 20,
                                 ),
                                 WidgetInputUnderline(
-                                  controller: _controller.passwordController,
+                                  controller: controller.passwordController,
                                   hint: 'Password...',
-                                  suffixIcon: _controller.obscureText.value
+                                  suffixIcon: controller.obscureText.value
                                       ? IconButton(
                                           icon: Icon(
                                             Icons.visibility_off_rounded,
                                             color: TEXT_HINT_COLOR,
                                           ),
-                                          onPressed: () => _controller
+                                          onPressed: () => controller
                                               .obscureText.value = false)
                                       : IconButton(
                                           icon: Icon(
                                               Icons.remove_red_eye_rounded,
                                               color: TEXT_HINT_COLOR),
-                                          onPressed: () => _controller
+                                          onPressed: () => controller
                                               .obscureText.value = true),
-                                  obscureText: _controller.obscureText.value,
+                                  obscureText: controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
@@ -93,7 +92,10 @@ class SignInScreen extends GetView<SignInController> {
                                 ),
                                 Center(
                                   child: WidgetRaisedGradientButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      FocusScope.of(context).unfocus();
+                                      controller.signIn(SignInType.normal);
+                                    },
                                     width: Get.width * 3 / 5,
                                     height: 45,
                                     borderRadius: BorderRadius.circular(4),
@@ -118,6 +120,7 @@ class SignInScreen extends GetView<SignInController> {
                                   child: Text(
                                     'forgot_password'.tr,
                                     style: STYLE_SMALL_BOLD.copyWith(
+                                        decoration: TextDecoration.underline,
                                         color: COLOR_PRIMARY),
                                     textAlign: TextAlign.center,
                                   ),
@@ -208,6 +211,8 @@ class SignInScreen extends GetView<SignInController> {
                                       child: Text(
                                         'sign_up'.tr,
                                         style: STYLE_SMALL_BOLD.copyWith(
+                                            decoration:
+                                                TextDecoration.underline,
                                             color: COLOR_PRIMARY),
                                         textAlign: TextAlign.center,
                                       ),

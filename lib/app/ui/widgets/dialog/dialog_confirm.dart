@@ -63,8 +63,9 @@ class DialogConfirm extends StatelessWidget {
               children: <Widget>[
                 Expanded(
                     child: InkWell(
-                  borderRadius:
-                      BorderRadius.only(bottomLeft: Radius.circular(16)),
+                  borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(16),
+                      bottomRight: Radius.circular(16)),
                   onTap: () => Navigator.pop(context, false),
                   child: Container(
                     decoration: BoxDecoration(

@@ -10,8 +10,6 @@ import 'package:werewolf_client/app/routes/app_pages.dart';
 import 'sign_up_controller.dart';
 
 class SignUpScreen extends GetView<SignUpController> {
-  SignUpController _controller = Get.find<SignUpController>();
-
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -33,7 +31,7 @@ class SignUpScreen extends GetView<SignUpController> {
                     child: Padding(
                       padding: const EdgeInsets.fromLTRB(40, 30, 40, 80),
                       child: Form(
-                        key: _controller.formKey,
+                        key: controller.formKey,
                         child: GetX(
                           builder: (_) {
                             return Column(
@@ -58,7 +56,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                   height: 65,
                                 ),
                                 WidgetInputUnderline(
-                                  controller: _controller.emailController,
+                                  controller: controller.emailController,
                                   hint: 'Email...',
                                   inputType: TextInputType.emailAddress,
                                   hintStyle: STYLE_MEDIUM.copyWith(
@@ -68,7 +66,7 @@ class SignUpScreen extends GetView<SignUpController> {
                                   height: 20,
                                 ),
                                 WidgetInputUnderline(
-                                  controller: _controller.usernameController,
+                                  controller: controller.usernameController,
                                   hint: 'Username...',
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
@@ -77,23 +75,23 @@ class SignUpScreen extends GetView<SignUpController> {
                                   height: 20,
                                 ),
                                 WidgetInputUnderline(
-                                  controller: _controller.passwordController,
+                                  controller: controller.passwordController,
                                   hint: 'Password...',
-                                  suffixIcon: _controller.obscureText.value
+                                  suffixIcon: controller.obscureText.value
                                       ? IconButton(
                                           icon: Icon(
                                             Icons.visibility_off_rounded,
                                             color: TEXT_HINT_COLOR,
                                           ),
-                                          onPressed: () => _controller
+                                          onPressed: () => controller
                                               .obscureText.value = false)
                                       : IconButton(
                                           icon: Icon(
                                               Icons.remove_red_eye_rounded,
                                               color: TEXT_HINT_COLOR),
-                                          onPressed: () => _controller
+                                          onPressed: () => controller
                                               .obscureText.value = true),
-                                  obscureText: _controller.obscureText.value,
+                                  obscureText: controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
@@ -103,7 +101,10 @@ class SignUpScreen extends GetView<SignUpController> {
                                 ),
                                 Center(
                                   child: WidgetRaisedGradientButton(
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      FocusScope.of(context).unfocus();
+                                      controller.signUp();
+                                    },
                                     width: Get.width * 3 / 5,
                                     height: 45,
                                     borderRadius: BorderRadius.circular(4),
@@ -203,10 +204,12 @@ class SignUpScreen extends GetView<SignUpController> {
                                       width: 6,
                                     ),
                                     InkWell(
-                                      onTap: () => Get.offNamed(Routes.SIGN_UP),
+                                      onTap: () => Get.offNamed(Routes.SIGN_IN),
                                       child: Text(
-                                        'sign_up'.tr,
+                                        'sign_in'.tr,
                                         style: STYLE_SMALL_BOLD.copyWith(
+                                            decoration:
+                                                TextDecoration.underline,
                                             color: COLOR_PRIMARY),
                                         textAlign: TextAlign.center,
                                       ),

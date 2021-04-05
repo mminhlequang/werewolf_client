@@ -51,8 +51,9 @@ class DialogNotification extends StatelessWidget {
                 height: 18,
               ),
               InkWell(
-                borderRadius:
-                    BorderRadius.only(bottomLeft: Radius.circular(16)),
+                borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(16),
+                    bottomRight: Radius.circular(16)),
                 onTap: action ?? () => Navigator.pop(context, true),
                 child: Container(
                   decoration: BoxDecoration(

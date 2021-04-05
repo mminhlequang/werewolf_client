@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/ui/widgets/dialog/dialog_confirm.dart';
 import 'package:werewolf_client/app/ui/widgets/dialog/dialog_notification.dart';
@@ -11,6 +12,12 @@ class BaseController extends GetxController {
       loading.value = true;
     else
       loading.value = false;
+  }
+
+  easyLoading(bool status) {
+    if (status) {
+      if (!EasyLoading.isShow) EasyLoading.show();
+    } else if (EasyLoading.isShow) EasyLoading.dismiss();
   }
 
   Future<bool> showRequestConfirm(
