@@ -33,7 +33,7 @@ class SignInScreen extends GetView<SignInController> {
                       padding: const EdgeInsets.fromLTRB(40, 30, 40, 80),
                       child: Form(
                         key: controller.formKey,
-                        child: GetX(
+                        child: GetX<SignInController>(
                           builder: (_) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

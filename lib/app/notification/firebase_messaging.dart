@@ -2,7 +2,9 @@ import 'dart:developer';
 import 'dart:io';
 import 'package:firebase_messaging/firebase_messaging.dart';
 
-import '../barrel.dart';
+import 'local_notification.dart';
+import 'notification.dart';
+import 'notification_data.dart';
 
 Future<void> backgroundMessageHandler(RemoteMessage message) async {
   log("OnBackgroundMessage: $message");
@@ -28,11 +30,12 @@ class FirebaseCloudMessaging {
   }
 
   static _handler(RemoteMessage message, {bool onlyShow = false}) {
+    Data payload = Data.fromJson(message.data);
     if (onlyShow) {
       LocalNotification.showNotification(message.notification.title,
-          message.notification.body, message.data.toString());
+          message.notification.body, payload.toString());
     } else {
-      selectNotificationSubject.add(message.data.toString());
+      selectNotificationSubject.add(payload.toString());
     }
   }
 }

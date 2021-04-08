@@ -1,9 +1,10 @@
-
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
-import '../barrel.dart';
+import 'notification.dart';
+
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+NotificationAppLaunchDetails notificationAppLaunchDetails;
 
 class LocalNotification {
   static const String _id = 'EnglishChallengeID';
@@ -13,16 +14,16 @@ class LocalNotification {
   static setup() async {
     //setup local notification
     notificationAppLaunchDetails =
-    await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
+        await flutterLocalNotificationsPlugin.getNotificationAppLaunchDetails();
 
     var initializationSettingsAndroid =
-    AndroidInitializationSettings('ic_launcher');
+        AndroidInitializationSettings('ic_launcher');
     // Note: permissions aren't requested here just to demonstrate that can be done later using the `requestPermissions()` method
     // of the `IOSFlutterLocalNotificationsPlugin` class
     var initializationSettingsIOS = IOSInitializationSettings(
-        requestAlertPermission: false,
-        requestBadgePermission: false,
-        requestSoundPermission: false,
+        requestAlertPermission: true,
+        requestBadgePermission: true,
+        requestSoundPermission: true,
         onDidReceiveLocalNotification:
             (int id, String title, String body, String payload) async {
           selectNotificationSubject.add(payload);
@@ -32,16 +33,7 @@ class LocalNotification {
         android: initializationSettingsAndroid, iOS: initializationSettingsIOS);
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: (String payload) async {
-          selectNotificationSubject.add(payload);
-        });
-  }
-
-  static configureSelectNotificationSubject(BuildContext context) {
-    selectNotificationSubject.stream.listen((String payload) async {
-      if (payload == null) return;
-      try {} catch (e) {} finally {
-        selectNotificationSubject.add(null);
-      }
+      selectNotificationSubject.add(payload);
     });
   }
 
@@ -54,9 +46,8 @@ class LocalNotification {
     var platformChannelSpecifics = NotificationDetails(
         android: androidPlatformChannelSpecifics,
         iOS: iOSPlatformChannelSpecifics);
-    await flutterLocalNotificationsPlugin.show(
-        0, '${title ?? 'null'} ', '${body ?? 'null'}', platformChannelSpecifics,
+    await flutterLocalNotificationsPlugin.show(0, '${title ?? 'Say hi!'} ',
+        '${body ?? 'Nice to meet you again!'}', platformChannelSpecifics,
         payload: payload);
   }
 }
-

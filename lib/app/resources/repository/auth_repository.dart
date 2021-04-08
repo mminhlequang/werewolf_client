@@ -25,7 +25,7 @@ class AuthRepository {
       {String username,
       String password,
       SignInType type,
-      LoginResult result}) async {
+        LoginSocialResult result}) async {
     Map<String, dynamic> params;
     switch (type) {
       case SignInType.normal:

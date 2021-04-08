@@ -10,11 +10,19 @@ class SplashScreen extends GetView<SplashController> {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(
+            child: TweenAnimationBuilder(
+          duration: const Duration(seconds: 1),
+          curve: Curves.easeIn,
+          tween: Tween<double>(begin: 0, end: 1),
+          builder: (_, value, child) => Opacity(
+            opacity: value,
+            child: child,
+          ),
           child: Image.asset(
             AppImages.icLauncher,
             width: Get.width / 3,
             height: Get.width / 3,
           ),
-        ));
+        )));
   }
 }

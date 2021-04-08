@@ -31,12 +31,12 @@ class SignInController extends BaseController {
         easyLoading(false);
         break;
       case SignInType.facebook:
-        LoginResult result = await SocialService().signInFacebook();
+        LoginSocialResult result = await SocialService().signInFacebook();
         response = await _authRepository.postSignIn(result: result, type: type);
         easyLoading(false);
         break;
       case SignInType.google:
-        LoginResult result = await SocialService().signInGoogle();
+        LoginSocialResult result = await SocialService().signInGoogle();
         response = await _authRepository.postSignIn(result: result, type: type);
         easyLoading(false);
         break;

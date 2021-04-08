@@ -32,7 +32,7 @@ class SignUpScreen extends GetView<SignUpController> {
                       padding: const EdgeInsets.fromLTRB(40, 30, 40, 80),
                       child: Form(
                         key: controller.formKey,
-                        child: GetX(
+                        child: GetX<SignUpController>(
                           builder: (_) {
                             return Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

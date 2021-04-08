@@ -1,9 +1,11 @@
+import 'dart:developer';
+
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 enum SocialType { facebook, google, apple }
 
-class LoginResult {
+class LoginSocialResult {
   bool success;
   dynamic id;
   String accessToken;
@@ -14,7 +16,7 @@ class LoginResult {
 
   bool get isSuccess => success ?? false;
 
-  LoginResult(
+  LoginSocialResult(
       {this.accessToken,
       this.success,
       this.email,
@@ -36,29 +38,40 @@ class SocialService {
 
   // Username: test_jbijwbw_user@tfbnw.net
   // pass: Werewolf@
-  Future<LoginResult> signInFacebook() async {
-    LoginResult result = LoginResult(type: SocialType.facebook);
+  Future<LoginSocialResult> signInFacebook() async {
+    LoginSocialResult socialResult =
+        LoginSocialResult(type: SocialType.facebook);
     try {
-      AccessToken accessToken = await FacebookAuth.instance.isLogged;
-      if (accessToken != null) await FacebookAuth.instance.logOut();
-      accessToken = await FacebookAuth.instance.login();
-      if (accessToken == null) return result;
-      final Map<String, dynamic> user =
-          await FacebookAuth.instance.getUserData();
-      result.id = accessToken.userId;
-      result.accessToken = accessToken.token;
-      result.fullName = user['name'];
-      result.email = user['email'];
-      result.avatar = user['picture']['data']['url'];
-      result.success = true;
+      await FacebookAuth.instance.logOut();
+      final LoginResult result = await FacebookAuth.instance.login(
+        permissions: [
+          'email',
+          'public_profile',
+          'user_birthday',
+          'user_friends',
+          'user_gender',
+          'user_link'
+        ],
+      );
+      if (result.status != LoginStatus.success) return socialResult;
+      final AccessToken accessToken = result.accessToken;
+      final Map<String, dynamic> user = await FacebookAuth.instance.getUserData(
+          fields: "name,email,picture.width(200),birthday,friends,gender,link");
+      log("User: $user");
+      socialResult.id = accessToken.userId;
+      socialResult.accessToken = accessToken.token;
+      socialResult.fullName = user['name'];
+      socialResult.email = user['email'];
+      socialResult.avatar = user['picture']['data']['url'];
+      socialResult.success = true;
     } catch (error) {
       print(error);
     }
-    return result;
+    return socialResult;
   }
 
-  signInGoogle() async {
-    LoginResult result = LoginResult(type: SocialType.google);
+  Future<LoginSocialResult> signInGoogle() async {
+    LoginSocialResult result = LoginSocialResult(type: SocialType.google);
     try {
       if (await GoogleSignIn().isSignedIn()) await GoogleSignIn().signOut();
       final GoogleSignInAccount googleUser = await GoogleSignIn().signIn();

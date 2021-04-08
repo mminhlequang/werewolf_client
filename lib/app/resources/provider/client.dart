@@ -31,7 +31,8 @@ class AppClients extends DioForNative {
     this.options.baseUrl = baseUrl;
   }
 
-  _requestInterceptor(RequestOptions options) async {
+  _requestInterceptor(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     switch (options.method) {
       case AppClients.GET:
         log("${options.method}: ${options.uri}\nParams: ${options.queryParameters}");
@@ -49,12 +50,16 @@ class AppClients extends DioForNative {
     }
     options.connectTimeout = AppEndpoint.connectionTimeout;
     options.receiveTimeout = AppEndpoint.receiveTimeout;
-    return options;
+    handler.next(options);
   }
 
-  _responseInterceptor(Response response) {
-    log("Response ${response.request.uri}: ${response.statusCode}\nData: ${response.data}");
+  _responseInterceptor(Response response, ResponseInterceptorHandler handler) {
+    log("Response ${response.requestOptions.uri}: ${response.statusCode}\nData: ${response.data}");
+    handler.next(response);
   }
 
-  _errorInterceptor(DioError dioError) {}
+  _errorInterceptor(DioError dioError, ErrorInterceptorHandler handler) {
+    log("${dioError.type} - Error ${dioError.message}");
+    handler.next(dioError);
+  }
 }

@@ -53,8 +53,7 @@ class NetworkResponse<T> {
   NetworkResponse.withErrorRequest(Dio.DioError error) {
     try {
       Dio.Response response = error.response;
-      log("${response?.request?.path ?? ""}\nDio error: $error\nData: ${response?.data ?? ""}");
-      this.code = response.statusCode;
+      this.code = response?.statusCode ?? _ERROR_SERVER;
     } catch (e) {
       log("Error NetworkResponse.withErrorRequest: $e");
     } finally {
