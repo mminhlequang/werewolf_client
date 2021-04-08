@@ -4,6 +4,7 @@ import 'package:werewolf_client/app/constants/constants.dart';
 class WidgetInputUnderline extends StatelessWidget {
   final TextEditingController controller;
   final String hint;
+  final TextStyle style;
   final TextStyle hintStyle;
   final ValueChanged<String> onChanged;
   final ValueChanged<String> onFieldSubmitted;
@@ -11,10 +12,13 @@ class WidgetInputUnderline extends StatelessWidget {
   final TextInputType inputType;
   final Widget suffixIcon;
   final bool obscureText;
+  final FormFieldValidator validator;
 
   WidgetInputUnderline(
       {this.controller,
+      this.style,
       this.inputType,
+      this.validator,
       this.hint,
       this.hintStyle,
       this.obscureText,
@@ -29,8 +33,10 @@ class WidgetInputUnderline extends StatelessWidget {
       keyboardType: inputType ?? TextInputType.text,
       controller: controller,
       onChanged: onChanged,
+      validator: validator,
       onFieldSubmitted: onFieldSubmitted,
       obscureText: obscureText ?? false,
+      style: style,
       decoration: InputDecoration(
           suffixIcon: suffixIcon,
           contentPadding: contentPadding ?? const EdgeInsets.all(16),

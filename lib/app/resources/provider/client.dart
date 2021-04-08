@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:dio/dio.dart';
 import 'package:dio/native_imp.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
+import 'package:werewolf_client/app/utils/utils.dart';
 
 class AppClients extends DioForNative {
   static const String GET = "GET";
@@ -33,6 +34,8 @@ class AppClients extends DioForNative {
 
   _requestInterceptor(
       RequestOptions options, RequestInterceptorHandler handler) async {
+    options.headers
+        .addEntries([MapEntry('Authorization', AppPref.accessToken)]);
     switch (options.method) {
       case AppClients.GET:
         log("${options.method}: ${options.uri}\nParams: ${options.queryParameters}");

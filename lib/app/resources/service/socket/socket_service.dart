@@ -1,10 +1,11 @@
 import 'package:socket_io_client/socket_io_client.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
+import 'package:werewolf_client/app/resources/service/socket/socket_constant.dart';
 import 'package:werewolf_client/app/utils/app_pref.dart';
 
 import 'socket_listener.dart';
 
-enum SocketListenType { invite, pickImage, memory, general }
+enum SocketListenType { room }
 
 enum ResultInviteType { accept, reject }
 
@@ -15,15 +16,15 @@ class SocketService {
   Socket _socketIO;
   SocketListener _listener;
 
-  static Future<SocketService> instance() async {
+  static Future<SocketService> instance([listener]) async {
     if (_socketService == null) {
       _socketService = SocketService._();
-      await _socketService.initSocket();
+      await _socketService.initSocket(listener);
     }
     return _socketService;
   }
 
-  initSocket() async {
+  initSocket([listener]) async {
     String uri = AppEndpoint.BASE_URL_SOCKET;
     _socketIO = io(
         uri,
@@ -32,7 +33,7 @@ class SocketService {
             .disableAutoConnect()
             .setQuery({'accessToken': AppPref.accessToken})
             .build());
-    _setListener(SocketListener());
+    _setListener(listener ?? SocketListener());
     _socketIO.onConnect(_listener.onSocketConnect);
     _socketIO.onDisconnect(_listener.onSocketDisconnect);
     _socketIO.connect();
@@ -61,11 +62,30 @@ class SocketService {
     ]);
   }
 
+  emitFindRoom() {
+    print("==========> EMIT FIND ROOM");
+    _socketIO.emit(SocketConstant.emitFindRoom, [
+      {'type': 'normal'}
+    ]);
+  }
+
+  emitReady() {
+    print("==========> EMIT READY");
+    _socketIO.emit(SocketConstant.emitReadyPlayer, []);
+  }
+
   registerListener({SocketListenType type, SocketListener listener}) {
     _setListener(listener);
     switch (type) {
-      case SocketListenType.invite:
-        // _socketIO.on("onRoomInvite", _listener.onSocketPickImageInvite);
+      case SocketListenType.room:
+        _socketIO.on(SocketConstant.onInfoRoom, _listener.onSocketInfoRoom);
+        _socketIO.on(SocketConstant.onReadyRoom, _listener.onSocketReadyRoom);
+        _socketIO.on(SocketConstant.onRolePlayer, _listener.onSocketRolePlayer);
+        _socketIO.on(
+            SocketConstant.onMessageRoom, _listener.onSocketMessageRoom);
+        _socketIO.on(
+            SocketConstant.onMessageWolf, _listener.onSocketMessageWolf);
+        _socketIO.on(SocketConstant.onMessageDie, _listener.onSocketMessageDie);
         break;
       default:
         break;
@@ -74,8 +94,17 @@ class SocketService {
 
   unListener(SocketListenType type) async {
     switch (type) {
-      case SocketListenType.invite:
-        _socketIO.off("onRoomInvite");
+      case SocketListenType.room:
+        _socketIO.off(SocketConstant.onInfoRoom, _listener.onSocketInfoRoom);
+        _socketIO.off(SocketConstant.onReadyRoom, _listener.onSocketReadyRoom);
+        _socketIO.off(
+            SocketConstant.onRolePlayer, _listener.onSocketRolePlayer);
+        _socketIO.off(
+            SocketConstant.onMessageRoom, _listener.onSocketMessageRoom);
+        _socketIO.off(
+            SocketConstant.onMessageWolf, _listener.onSocketMessageWolf);
+        _socketIO.off(
+            SocketConstant.onMessageDie, _listener.onSocketMessageDie);
         break;
       default:
         break;

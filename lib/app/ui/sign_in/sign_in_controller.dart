@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:werewolf_client/app/resources/resources.dart';
 import 'package:werewolf_client/app/routes/app_pages.dart';
 import 'package:werewolf_client/app/ui/base/base_controller.dart';
+import 'package:werewolf_client/app/utils/utils.dart';
 
 class SignInController extends BaseController {
   final AuthRepository _authRepository = AuthRepository();
@@ -48,7 +49,11 @@ class SignInController extends BaseController {
         trans: false,
         action: () {
           Get.back();
-          if (response.isSuccess) Get.offNamed(Routes.NAVIGATION);
+          if (response.isSuccess) {
+            AppPref.user = response.data.user;
+            AppPref.accessToken = response.data.accessToken;
+            Get.offNamed(Routes.NAVIGATION);
+          }
         });
   }
 

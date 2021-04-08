@@ -1,6 +1,8 @@
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/ui/navigation/navigation_binding.dart';
 import 'package:werewolf_client/app/ui/navigation/navigation_screen.dart';
+import 'package:werewolf_client/app/ui/room/room_binding.dart';
+import 'package:werewolf_client/app/ui/room/room_screen.dart';
 import 'package:werewolf_client/app/ui/sign_in/sign_in_binding.dart';
 import 'package:werewolf_client/app/ui/sign_in/sign_in_screen.dart';
 import 'package:werewolf_client/app/ui/sign_up/sign_up_binding.dart';
@@ -20,5 +22,6 @@ class AppPages {
     GetPage(name: Routes.SIGN_UP, page:()=> SignUpScreen(), binding: SignUpBinding()),
 
     GetPage(name: Routes.NAVIGATION, page:()=> NavigationScreen(), binding: NavigationBinding()),
+    GetPage(name: Routes.ROOM, page:()=> RoomScreen(), binding: RoomBinding()),
   ];
 }

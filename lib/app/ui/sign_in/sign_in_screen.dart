@@ -59,6 +59,8 @@ class SignInScreen extends GetView<SignInController> {
                                 WidgetInputUnderline(
                                   controller: controller.usernameController,
                                   hint: 'Username...',
+                                  style: STYLE_MEDIUM.copyWith(
+                                      color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),
@@ -84,6 +86,8 @@ class SignInScreen extends GetView<SignInController> {
                                               .obscureText.value = true),
                                   obscureText: controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
+                                  style: STYLE_MEDIUM.copyWith(
+                                      color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),

@@ -9,11 +9,11 @@ class AppEndpoint {
   static const int receiveTimeout = 5000;
   static const String keyAuthorization = "Authorization";
 
-  static const String GET_CONFIG = "/api/getConfig";
+  static const String GET_CONFIG = "/api/get/config";
 
   static const String POST_SIGN_UP = "/api/post/signUp";
 
   static const String POST_SIGN_IN = "/api/post/signIn";
 
-  static const String GET_PROFILE = "/api/getProfile";
+  static const String GET_PROFILE = "/api/get/profile";
 }

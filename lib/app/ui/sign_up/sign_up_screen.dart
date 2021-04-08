@@ -59,6 +59,8 @@ class SignUpScreen extends GetView<SignUpController> {
                                   controller: controller.emailController,
                                   hint: 'Email...',
                                   inputType: TextInputType.emailAddress,
+                                  style: STYLE_MEDIUM.copyWith(
+                                      color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),
@@ -93,6 +95,8 @@ class SignUpScreen extends GetView<SignUpController> {
                                               .obscureText.value = true),
                                   obscureText: controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
+                                  style: STYLE_MEDIUM.copyWith(
+                                      color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),

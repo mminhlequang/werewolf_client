@@ -25,7 +25,7 @@ class AuthRepository {
       {String username,
       String password,
       SignInType type,
-        LoginSocialResult result}) async {
+      LoginSocialResult result}) async {
     Map<String, dynamic> params;
     switch (type) {
       case SignInType.normal:
@@ -36,14 +36,10 @@ class AuthRepository {
         };
         break;
       case SignInType.google:
-        params = {
-          'type': describeEnum(type)
-        };
+        params = {'type': describeEnum(type)};
         break;
       case SignInType.facebook:
-        params = {
-          'type': describeEnum(type)
-        };
+        params = {'type': describeEnum(type)};
         break;
       default:
         break;

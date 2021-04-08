@@ -16,5 +16,15 @@ final Map<String, String> viVN = {
   'forgot_password' : 'Quên mật khẩu',
   'social_media_login' : 'Đăng nhập bằng mạng xã hội',
   'do_not_have_an_account' : 'Chưa có tài khoản?',
-  'already_have_an_account' : 'Đã có tài khoản?'
+  'already_have_an_account' : 'Đã có tài khoản?',
+
+  "valid_full_name": "Vui lòng nhập đầy đủ thông tin",
+  "valid_enter_email": "Vui lòng nhập email",
+  "valid_email": "Email chưa đúng định dạng",
+  "valid_enter_phone": "Vui lòng nhập số điện thoại",
+  "valid_phone": "Số điện thoại chưa đúng định dạng",
+  "valid_password": "Mật khẩu phải chứa ít nhất 6 ký tự",
+
+  'play_now': 'Chơi ngay',
+  'disconnect_to_server' : 'Mất kết nối tới máy chủ!'
 };
