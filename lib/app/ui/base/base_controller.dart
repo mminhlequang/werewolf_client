@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/ui/widgets/dialog/dialog_confirm.dart';
-import 'package:werewolf_client/app/ui/widgets/dialog/dialog_notification.dart';
+
+import '../ui.dart';
 
 class BaseController extends GetxController {
   var loading = false.obs;

@@ -1,18 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/constants/app_images.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
-import 'package:werewolf_client/app/resources/repository/auth_repository.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_back_button.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_input_underline.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_raised_gradient_button.dart';
+import 'package:werewolf_client/app/resources/resources.dart';
 import 'package:werewolf_client/app/routes/app_pages.dart';
 
-import 'sign_in_controller.dart';
+import '../ui.dart';
 
-class SignInScreen extends GetView<SignInController> {
+class SignInScreen extends BaseScreen<SignInController> {
   @override
-  Widget build(BuildContext context) {
+  Widget buildMobile(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(

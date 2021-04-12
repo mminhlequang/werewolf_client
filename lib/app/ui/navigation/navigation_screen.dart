@@ -1,14 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/constants/app_images.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_raised_gradient_button.dart';
 
-import 'navigation_controller.dart';
+import '../ui.dart';
 
-class NavigationScreen extends GetView<NavigationController> {
+class NavigationScreen extends BaseScreen<NavigationController> {
   @override
-  Widget build(BuildContext context) {
+  Widget buildMobile(BuildContext context) {
     return Scaffold(
       body: Container(
         width: Get.width,

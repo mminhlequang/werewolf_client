@@ -1,14 +1,5 @@
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/ui/navigation/navigation_binding.dart';
-import 'package:werewolf_client/app/ui/navigation/navigation_screen.dart';
-import 'package:werewolf_client/app/ui/room/room_binding.dart';
-import 'package:werewolf_client/app/ui/room/room_screen.dart';
-import 'package:werewolf_client/app/ui/sign_in/sign_in_binding.dart';
-import 'package:werewolf_client/app/ui/sign_in/sign_in_screen.dart';
-import 'package:werewolf_client/app/ui/sign_up/sign_up_binding.dart';
-import 'package:werewolf_client/app/ui/sign_up/sign_up_screen.dart';
-import 'package:werewolf_client/app/ui/splash/splash_screen.dart';
-import 'package:werewolf_client/app/ui/start/start_screen.dart';
+import '../ui/ui.dart';
 
 part './app_routes.dart';
 

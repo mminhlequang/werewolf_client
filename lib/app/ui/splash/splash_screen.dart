@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/constants/app_images.dart';
 
-import 'splash_controller.dart';
+import '../ui.dart';
 
-class SplashScreen extends GetView<SplashController> {
+class SplashScreen extends BaseScreen<SplashController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

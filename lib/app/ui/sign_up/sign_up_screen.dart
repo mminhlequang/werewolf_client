@@ -1,17 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/constants/app_images.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_back_button.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_input_underline.dart';
-import 'package:werewolf_client/app/ui/widgets/widget_raised_gradient_button.dart';
 import 'package:werewolf_client/app/routes/app_pages.dart';
 
-import 'sign_up_controller.dart';
+import '../ui.dart';
 
-class SignUpScreen extends GetView<SignUpController> {
+class SignUpScreen extends BaseScreen<SignUpController> {
   @override
-  Widget build(BuildContext context) {
+  Widget buildMobile(BuildContext context) {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
@@ -59,8 +55,8 @@ class SignUpScreen extends GetView<SignUpController> {
                                   controller: controller.emailController,
                                   hint: 'Email...',
                                   inputType: TextInputType.emailAddress,
-                                  style: STYLE_MEDIUM.copyWith(
-                                      color: TEXT_COLOR),
+                                  style:
+                                      STYLE_MEDIUM.copyWith(color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),
@@ -95,8 +91,8 @@ class SignUpScreen extends GetView<SignUpController> {
                                               .obscureText.value = true),
                                   obscureText: controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
-                                  style: STYLE_MEDIUM.copyWith(
-                                      color: TEXT_COLOR),
+                                  style:
+                                      STYLE_MEDIUM.copyWith(color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),

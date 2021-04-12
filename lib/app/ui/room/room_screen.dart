@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/constants/app_images.dart';
 
-import 'room_controller.dart';
+import '../ui.dart';
 
-class RoomScreen extends GetView<RoomController> {
+class RoomScreen extends BaseScreen<RoomController> {
   @override
-  Widget build(BuildContext context) {
+  Widget buildMobile(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
         body: Center(

@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:sign_in_with_apple/sign_in_with_apple.dart';
 
 enum SocialType { facebook, google, apple }
 
@@ -18,7 +19,7 @@ class LoginSocialResult {
 
   LoginSocialResult(
       {this.accessToken,
-      this.success,
+      this.success = false,
       this.email,
       this.type,
       this.id,
@@ -90,4 +91,37 @@ class SocialService {
     }
     return result;
   }
+
+  // static Future<LoginSocialResult> signInWithApple() async {
+  //   LoginSocialResult result = LoginSocialResult(type: SocialType.apple);
+  //   final credential = await SignInWithApple.getAppleIDCredential(scopes: [
+  //     AppleIDAuthorizationScopes.email,
+  //     AppleIDAuthorizationScopes.fullName,
+  //   ]);
+  //
+  //   print(credential);
+  //
+  //   // This is the endpoint that will convert an authorization code obtained
+  //   // via Sign in with Apple into a session in your system
+  //   final signInWithAppleEndpoint = Uri(
+  //     scheme: 'https',
+  //     host: 'flutter-sign-in-with-apple-example.glitch.me',
+  //     path: '/sign_in_with_apple',
+  //     queryParameters: <String, String>{
+  //       'code': credential.authorizationCode,
+  //       if (credential.givenName != null) 'firstName': credential.givenName!,
+  //       if (credential.familyName != null) 'lastName': credential.familyName!,
+  //       'useBundleId': Platform.isIOS || Platform.isMacOS ? 'true' : 'false',
+  //       if (credential.state != null) 'state': credential.state!,
+  //     },
+  //   );
+  //
+  //   final session = await http.Client().post(
+  //     signInWithAppleEndpoint,
+  //   );
+  //
+  //   // If we got this far, a session based on the Apple ID credential has been created in your system,
+  //   // and you can now set this as the app's session
+  //   print(session);
+  // }
 }

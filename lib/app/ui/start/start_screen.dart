@@ -1,12 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/constants/app_images.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
 import 'package:werewolf_client/app/routes/app_pages.dart';
 
-import '../widgets/widget_raised_gradient_button.dart';
-import '../widgets/widget_raised_outline_button.dart';
+import '../ui.dart';
 
 class StartScreen extends GetView {
   @override
