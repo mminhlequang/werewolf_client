@@ -5,6 +5,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:werewolf_client/app/utils/utils.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
 import 'app/constants/constants.dart';
 import 'app/routes/app_pages.dart';
@@ -14,6 +15,7 @@ import 'app/ui/splash/splash_binding.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await DotEnv.load();
   await Firebase.initializeApp();
   await SystemChrome.setEnabledSystemUIOverlays([]);
   await SystemChrome.setPreferredOrientations(
