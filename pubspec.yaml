@@ -17,7 +17,7 @@ dependencies:
   #SignIn social
   crypto: ^3.0.1
   firebase_core: ^1.0.3
-  firebase_auth: ^1.0.3
+  firebase_auth: ^1.1.0
   flutter_facebook_auth: ^3.3.2+2
   google_sign_in: ^5.0.1
   sign_in_with_apple: ^3.0.0
@@ -35,6 +35,8 @@ dependencies:
   socket_io_client: ^0.9.12
   modal_bottom_sheet: ^2.0.0
   responsive_builder: ^0.4.1
+  font_awesome_flutter: ^9.0.0
+  keyboard_dismisser: ^2.0.0
 
 flutter:
   uses-material-design: true

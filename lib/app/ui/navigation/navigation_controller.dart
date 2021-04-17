@@ -13,7 +13,6 @@ class NavigationController extends BaseController with SocketListener {
   }
 
   playNow() async {
-    service.emitFindRoom();
     Get.toNamed(Routes.ROOM);
   }
 

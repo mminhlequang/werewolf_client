@@ -9,8 +9,7 @@ import '../ui.dart';
 class SignInScreen extends BaseScreen<SignInController> {
   @override
   Widget buildMobile(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+    return WidgetKeyboardDismiss(
       child: Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
@@ -55,8 +54,8 @@ class SignInScreen extends BaseScreen<SignInController> {
                                 WidgetInputUnderline(
                                   controller: controller.usernameController,
                                   hint: 'Username...',
-                                  style: STYLE_MEDIUM.copyWith(
-                                      color: TEXT_COLOR),
+                                  style:
+                                      STYLE_MEDIUM.copyWith(color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),
@@ -82,8 +81,8 @@ class SignInScreen extends BaseScreen<SignInController> {
                                               .obscureText.value = true),
                                   obscureText: controller.obscureText.value,
                                   inputType: TextInputType.visiblePassword,
-                                  style: STYLE_MEDIUM.copyWith(
-                                      color: TEXT_COLOR),
+                                  style:
+                                      STYLE_MEDIUM.copyWith(color: TEXT_COLOR),
                                   hintStyle: STYLE_MEDIUM.copyWith(
                                       color: TEXT_HINT_COLOR),
                                 ),
@@ -167,35 +166,15 @@ class SignInScreen extends BaseScreen<SignInController> {
                                 const SizedBox(
                                   height: 12,
                                 ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                        onTap: () {
-                                          FocusScope.of(context).unfocus();
-                                          controller.signIn(SignInType.google);
-                                        },
-                                        child: Image.asset(
-                                          AppImages.icGoogle,
-                                          width: 42,
-                                          height: 42,
-                                        )),
-                                    const SizedBox(
-                                      width: 16,
-                                    ),
-                                    InkWell(
-                                      onTap: () {
-                                        FocusScope.of(context).unfocus();
-                                        controller.signIn(SignInType.facebook);
-                                      },
-                                      child: Image.asset(
-                                        AppImages.icFacebook,
-                                        width: 46,
-                                        height: 46,
-                                      ),
-                                    ),
-                                  ],
+                                WidgetSignInSocials(
+                                  google: () {
+                                    FocusScope.of(context).unfocus();
+                                    controller.signIn(SignInType.google);
+                                  },
+                                  facebook: () {
+                                    FocusScope.of(context).unfocus();
+                                    controller.signIn(SignInType.facebook);
+                                  },
                                 ),
                                 const SizedBox(
                                   height: 45,

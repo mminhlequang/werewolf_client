@@ -5,7 +5,7 @@ import 'package:werewolf_client/app/utils/app_pref.dart';
 
 import 'socket_listener.dart';
 
-enum SocketListenType { room }
+enum SocketListenType { welcome, villager, wolf, die }
 
 enum ResultInviteType { accept, reject }
 
@@ -74,17 +74,44 @@ class SocketService {
     _socketIO.emit(SocketConstant.emitReadyPlayer, []);
   }
 
+  emitLeaveRoom() {
+    print("==========> EMIT LEAVE ROOM");
+    _socketIO.emit(SocketConstant.emitLeaveRoom, []);
+  }
+
   registerListener({SocketListenType type, SocketListener listener}) {
     _setListener(listener);
     switch (type) {
-      case SocketListenType.room:
+      case SocketListenType.welcome:
+        _socketIO.on(
+            SocketConstant.onMessageSystem, _listener.onSocketMessageSystem);
+        _socketIO.on(
+            SocketConstant.onMessageRoom, _listener.onSocketMessageRoom);
+
         _socketIO.on(SocketConstant.onInfoRoom, _listener.onSocketInfoRoom);
         _socketIO.on(SocketConstant.onReadyRoom, _listener.onSocketReadyRoom);
         _socketIO.on(SocketConstant.onRolePlayer, _listener.onSocketRolePlayer);
+        _socketIO.on(SocketConstant.onPlayRoom, _listener.onSocketPlayRoom);
+        break;
+      case SocketListenType.villager:
         _socketIO.on(
-            SocketConstant.onMessageRoom, _listener.onSocketMessageRoom);
+            SocketConstant.onTimeControl, _listener.onSocketTimeControl);
+        _socketIO.on(SocketConstant.onVillagerVoteStart,
+            _listener.onSocketVillagerVoteStart);
+        _socketIO.on(SocketConstant.onVillagerVoteEnd,
+            _listener.onSocketVillagerVoteEnd);
+        break;
+
+      case SocketListenType.wolf:
         _socketIO.on(
-            SocketConstant.onMessageWolf, _listener.onSocketMessageWolf);
+            SocketConstant.onTimeControl, _listener.onSocketTimeControl);
+        _socketIO.on(
+            SocketConstant.onWolfVoteStart, _listener.onSocketWolfVoteStart);
+        _socketIO.on(
+            SocketConstant.onWolfVoteEnd, _listener.onSocketWolfVoteEnd);
+        break;
+
+      case SocketListenType.die:
         _socketIO.on(SocketConstant.onMessageDie, _listener.onSocketMessageDie);
         break;
       default:
@@ -94,17 +121,28 @@ class SocketService {
 
   unListener(SocketListenType type) async {
     switch (type) {
-      case SocketListenType.room:
-        _socketIO.off(SocketConstant.onInfoRoom, _listener.onSocketInfoRoom);
-        _socketIO.off(SocketConstant.onReadyRoom, _listener.onSocketReadyRoom);
-        _socketIO.off(
-            SocketConstant.onRolePlayer, _listener.onSocketRolePlayer);
-        _socketIO.off(
-            SocketConstant.onMessageRoom, _listener.onSocketMessageRoom);
-        _socketIO.off(
-            SocketConstant.onMessageWolf, _listener.onSocketMessageWolf);
-        _socketIO.off(
-            SocketConstant.onMessageDie, _listener.onSocketMessageDie);
+      case SocketListenType.welcome:
+        _socketIO.off(SocketConstant.onMessageRoom);
+
+        _socketIO.off(SocketConstant.onInfoRoom);
+        _socketIO.off(SocketConstant.onReadyRoom);
+        _socketIO.off(SocketConstant.onRolePlayer);
+        _socketIO.off(SocketConstant.onPlayRoom);
+        break;
+      case SocketListenType.villager:
+        _socketIO.off(SocketConstant.onTimeControl);
+        _socketIO.off(SocketConstant.onVillagerVoteStart);
+        _socketIO.off(SocketConstant.onVillagerVoteEnd);
+        break;
+
+      case SocketListenType.wolf:
+        _socketIO.off(SocketConstant.onTimeControl);
+        _socketIO.off(SocketConstant.onWolfVoteStart);
+        _socketIO.off(SocketConstant.onWolfVoteEnd);
+        break;
+
+      case SocketListenType.die:
+        _socketIO.off(SocketConstant.onMessageDie);
         break;
       default:
         break;

@@ -1,9 +1,9 @@
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/resources/repository/user_repository.dart';
 import 'package:werewolf_client/app/resources/resources.dart';
 import 'package:werewolf_client/app/routes/app_pages.dart';
-import 'package:werewolf_client/app/ui/base/base_controller.dart';
 import 'package:werewolf_client/app/utils/app_pref.dart';
+
+import '../ui.dart';
 
 class SplashController extends BaseController {
   final ConfigRepository _configRepository = ConfigRepository();

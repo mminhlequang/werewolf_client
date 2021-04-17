@@ -8,8 +8,7 @@ import '../ui.dart';
 class SignUpScreen extends BaseScreen<SignUpController> {
   @override
   Widget buildMobile(BuildContext context) {
-    return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+    return WidgetKeyboardDismiss(
       child: Scaffold(
           backgroundColor: Colors.white,
           body: SafeArea(
@@ -164,29 +163,9 @@ class SignUpScreen extends BaseScreen<SignUpController> {
                                 const SizedBox(
                                   height: 12,
                                 ),
-                                Row(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    InkWell(
-                                        onTap: () {},
-                                        child: Image.asset(
-                                          AppImages.icGoogle,
-                                          width: 42,
-                                          height: 42,
-                                        )),
-                                    const SizedBox(
-                                      width: 16,
-                                    ),
-                                    InkWell(
-                                      onTap: () {},
-                                      child: Image.asset(
-                                        AppImages.icFacebook,
-                                        width: 46,
-                                        height: 46,
-                                      ),
-                                    ),
-                                  ],
+                                WidgetSignInSocials(
+                                  google: () {},
+                                  facebook: () {},
                                 ),
                                 const SizedBox(
                                   height: 45,

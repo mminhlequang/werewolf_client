@@ -50,14 +50,12 @@ class SocialService {
           'public_profile',
           'user_birthday',
           'user_friends',
-          'user_gender',
-          'user_link'
         ],
       );
       if (result.status != LoginStatus.success) return socialResult;
       final AccessToken accessToken = result.accessToken;
       final Map<String, dynamic> user = await FacebookAuth.instance.getUserData(
-          fields: "name,email,picture.width(200),birthday,friends,gender,link");
+          fields: "name,email,picture.width(200),birthday,friends");
       log("User: $user");
       socialResult.id = accessToken.userId;
       socialResult.accessToken = accessToken.token;
