@@ -55,13 +55,6 @@ class SocketService {
     _listener = value ?? SocketListener();
   }
 
-  emitChangeLanguageCode(String code) {
-    print("==========> EMIT CHANGE LANGUAGE");
-    _socketIO.emit("changeLanguageCode", [
-      {'languageCode': code}
-    ]);
-  }
-
   emitFindRoom() {
     print("==========> EMIT FIND ROOM");
     _socketIO.emit(SocketConstant.emitFindRoom, [
@@ -79,6 +72,25 @@ class SocketService {
     _socketIO.emit(SocketConstant.emitLeaveRoom, []);
   }
 
+  emitSendMessage(String msg, SocketManagerChatChannel channel) {
+    String _channel;
+    switch (channel) {
+      case SocketManagerChatChannel.villager:
+        _channel = SocketConstant.emitVillagerChat;
+        break;
+      case SocketManagerChatChannel.wolf:
+        _channel = SocketConstant.emitWolfChat;
+        break;
+      case SocketManagerChatChannel.die:
+        _channel = SocketConstant.emitDieChat;
+        break;
+    }
+    print("==========> EMIT SEND MESSAGE TO: $_channel");
+    _socketIO.emit(_channel, [
+      {'msg': msg}
+    ]);
+  }
+
   registerListener({SocketListenType type, SocketListener listener}) {
     _setListener(listener);
     switch (type) {
@@ -89,6 +101,7 @@ class SocketService {
             SocketConstant.onMessageRoom, _listener.onSocketMessageRoom);
 
         _socketIO.on(SocketConstant.onInfoRoom, _listener.onSocketInfoRoom);
+        _socketIO.on(SocketConstant.onJoinRoom, _listener.onSocketJoinRoom);
         _socketIO.on(SocketConstant.onReadyRoom, _listener.onSocketReadyRoom);
         _socketIO.on(SocketConstant.onRolePlayer, _listener.onSocketRolePlayer);
         _socketIO.on(SocketConstant.onPlayRoom, _listener.onSocketPlayRoom);

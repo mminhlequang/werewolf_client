@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
 import 'package:werewolf_client/app/resources/resources.dart';
@@ -5,18 +6,25 @@ import 'package:werewolf_client/app/ui/base/base_controller.dart';
 import 'package:werewolf_client/app/utils/utils.dart';
 
 class RoomController extends BaseController with SocketListener {
+  final ScrollController messageController = ScrollController();
   SocketService service;
   final members = [].obs;
-
-  final roomMessages = [].obs;
-  final wolfMessages = [].obs;
-  final dieMessages = [].obs;
+  final roles = [].obs;
+  final messages = [].obs;
 
   final roomTimeState = SocketRoomTimeState.morning.obs;
   final roomState = SocketRoomState.wait.obs;
 
   RoomModel room;
   RoleModel role;
+
+  void sendMessage(String msg) {
+    service.emitSendMessage(msg, SocketManagerChatChannel.villager);
+  }
+
+  void changeSoundSetting(bool val) {}
+
+  void changeMusicSetting(bool val) {}
 
   @override
   void onInit() async {
@@ -37,6 +45,37 @@ class RoomController extends BaseController with SocketListener {
   }
 
   @override
+  void onSocketJoinRoom(data) {
+    super.onSocketJoinRoom(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
+    room = RoomModel.fromJson(data);
+
+    members.value = room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members +
+        room.members;
+  }
+
+  @override
+  void onSocketReadyRoom(data) {
+    super.onSocketReadyRoom(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
+    roles.value = RoleModel.listFromJson(data['roles']);
+  }
+
+  @override
   void onSocketRolePlayer(data) {
     super.onSocketRolePlayer(data);
     if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
@@ -46,68 +85,77 @@ class RoomController extends BaseController with SocketListener {
   }
 
   @override
-  void onSocketTimeControl(data) {
-    // TODO: implement onSocketTimeControl
-    super.onSocketTimeControl(data);
-  }
-
-  @override
-  void onSocketReadyRoom(data) {
-    // TODO: implement onSocketReadyRoom
-    super.onSocketReadyRoom(data);
-  }
-
-  @override
   void onSocketPlayRoom(data) {
-    // TODO: implement onSocketPlayRoom
     super.onSocketPlayRoom(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
+  }
+
+  @override
+  void onSocketTimeControl(data) {
+    super.onSocketTimeControl(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
   }
 
   @override
   void onSocketVillagerVoteStart(data) {
-    // TODO: implement onSocketVillagerVoteStart
     super.onSocketVillagerVoteStart(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
   }
 
   @override
   void onSocketVillagerVoteEnd(data) {
-    // TODO: implement onSocketVillagerVoteEnd
     super.onSocketVillagerVoteEnd(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
   }
 
   @override
   void onSocketWolfVoteStart(data) {
-    // TODO: implement onSocketWolfVoteStart
     super.onSocketWolfVoteStart(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
   }
 
   @override
   void onSocketWolfVoteEnd(data) {
-    // TODO: implement onSocketWolfVoteEnd
     super.onSocketWolfVoteEnd(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
   }
 
   @override
   void onSocketMessageSystem(data) {
-    // TODO: implement onSocketMessageSystem
     super.onSocketMessageSystem(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
   }
 
   @override
   void onSocketMessageRoom(data) {
     super.onSocketMessageRoom(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
+    MessageRoomModel msg = MessageRoomModel.fromJson(data);
+    messages.add(msg);
+    messageController.animateTo(messageController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 350), curve: Curves.linear);
   }
 
   @override
   void onSocketMessageWolf(data) {
-    // TODO: implement onSocketMessageWolf
     super.onSocketMessageWolf(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
+    MessageRoomModel msg =
+        MessageRoomModel.fromJson(data, messageType: MessageRoomType.wolf);
+    messages.add(msg);
+    messageController.animateTo(messageController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 350), curve: Curves.linear);
   }
 
   @override
   void onSocketMessageDie(data) {
-    // TODO: implement onSocketMessageDie
     super.onSocketMessageDie(data);
+    if (GetPlatform.isIOS) data = AppConverter.parseSocketData(data);
+    MessageRoomModel msg =
+        MessageRoomModel.fromJson(data, messageType: MessageRoomType.die);
+    messages.add(msg);
+    messageController.animateTo(messageController.position.maxScrollExtent,
+        duration: Duration(milliseconds: 350), curve: Curves.linear);
   }
 
   @override

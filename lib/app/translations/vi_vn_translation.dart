@@ -26,5 +26,13 @@ final Map<String, String> viVN = {
   "valid_password": "Mật khẩu phải chứa ít nhất 6 ký tự",
 
   'play_now': 'Chơi ngay',
-  'disconnect_to_server' : 'Mất kết nối tới máy chủ!'
+  'disconnect_to_server' : 'Mất kết nối tới máy chủ!',
+  'input_message' : 'Nhập nội dung...',
+  'back' : 'Trở về',
+  'setting' : 'Cài đặt',
+  'sound' : 'Âm thanh',
+  'music' : 'Âm nhạc',
+  'music_background' : 'Nhạc nền',
+  'done' : 'Xong',
+  'all_role_in_room' : 'Tất cả vai trò trong phòng'
 };

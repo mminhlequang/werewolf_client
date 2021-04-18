@@ -9,6 +9,8 @@ class AppImages {
 
   static final String imgStart = 'assets/images/img_start.jpeg';
   static final String imgWerewolf = 'assets/images/img_werewolf.jpeg';
+  static final String imgMemberAvatar = 'assets/images/member_avatar.png';
+  static final String imgMemberBackground = 'assets/images/member_background.png';
 
   static final String bgNavigation = 'assets/images/backgrounds/bg_navigation.webp';
 }

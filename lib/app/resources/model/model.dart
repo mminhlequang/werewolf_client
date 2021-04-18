@@ -6,3 +6,4 @@ export 'language_model.dart';
 export 'role_model.dart';
 export 'sectarian_model.dart';
 export 'room_model.dart';
+export 'message_room_model.dart';

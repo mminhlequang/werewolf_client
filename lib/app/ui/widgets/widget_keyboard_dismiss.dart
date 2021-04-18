@@ -8,6 +8,13 @@ class WidgetKeyboardDismiss extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return KeyboardDismisser(child: child);
+    return KeyboardDismisser(
+      child: child,
+      gestures: [
+        GestureType.onTap,
+        GestureType.onDoubleTap,
+        GestureType.onLongPress
+      ],
+    );
   }
 }

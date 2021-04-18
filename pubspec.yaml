@@ -19,7 +19,7 @@ dependencies:
   firebase_core: ^1.0.3
   firebase_auth: ^1.1.0
   flutter_facebook_auth: ^3.3.2+2
-  google_sign_in: ^5.0.1
+  google_sign_in: ^5.0.2
   sign_in_with_apple: ^3.0.0
 
   #Network
@@ -37,6 +37,8 @@ dependencies:
   responsive_builder: ^0.4.1
   font_awesome_flutter: ^9.0.0
   keyboard_dismisser: ^2.0.0
+  cached_network_image: ^3.0.0
+  sticky_headers: ^0.2.0
 
 flutter:
   uses-material-design: true

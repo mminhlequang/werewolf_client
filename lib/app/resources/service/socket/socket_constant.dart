@@ -13,6 +13,7 @@ class SocketConstant {
   static const String emitDieChat = 'on_die_chat';
 
   static const String onInfoRoom = 'on_info_room';
+  static const String onJoinRoom = 'on_join_room';
   static const String onReadyRoom = 'on_ready_room';
   static const String onRolePlayer = 'on_role_player';
   static const String onPlayRoom = 'on_play_room';

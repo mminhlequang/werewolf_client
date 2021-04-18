@@ -16,7 +16,7 @@ class WidgetRaisedOutlineButton extends StatelessWidget {
     this.color,
     this.borderWidth,
     this.borderRadius,
-    this.width = double.infinity,
+    this.width = 120,
     this.height = 50.0,
     this.onPressed,
   }) : super(key: key);

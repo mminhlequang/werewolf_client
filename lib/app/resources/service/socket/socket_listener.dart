@@ -13,6 +13,10 @@ class SocketListener {
     log("SocketListener \"onSocketInfoRoom\": $data");
   }
 
+  void onSocketJoinRoom(data) {
+    log("SocketListener \"onSocketJoinRoom\": $data");
+  }
+
   void onSocketReadyRoom(data) {
     log("SocketListener \"onSocketReadyRoom\": $data");
   }

@@ -22,9 +22,10 @@ class NavigationController extends BaseController with SocketListener {
   }
 
   @override
-  void onSocketDisconnect(data) {
+  void onSocketDisconnect(data) async {
     super.onSocketDisconnect(data);
-    showNotification(
+    if (Get.isDialogOpen) return;
+    await showNotification(
         keyTitle: 'disconnect_to_server', action: () => Get.back());
   }
 }

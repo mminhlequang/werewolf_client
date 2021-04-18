@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
+import 'package:werewolf_client/app/constants/constants.dart';
 
 class WidgetRaisedGradientButton extends StatelessWidget {
   final Widget child;
@@ -14,7 +15,7 @@ class WidgetRaisedGradientButton extends StatelessWidget {
     @required this.child,
     this.gradient,
     this.borderRadius,
-    this.width = double.infinity,
+    this.width = 120,
     this.height = 50.0,
     this.onPressed,
   }) : super(key: key);
@@ -30,7 +31,13 @@ class WidgetRaisedGradientButton extends StatelessWidget {
         height: height,
         decoration: BoxDecoration(
           borderRadius: borderRadius,
-          gradient: gradient,
+          gradient: gradient ?? LinearGradient(
+              begin: Alignment.centerRight,
+              end: Alignment.centerLeft,
+              colors: [
+                COLOR_PRIMARY,
+                COLOR_PRIMARY_DARK
+              ]),
         ),
         child: Material(
           color: Colors.transparent,
