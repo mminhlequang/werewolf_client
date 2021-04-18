@@ -8,3 +8,5 @@ export 'widget_sign_in_socials.dart';
 export 'widget_keyboard_dismiss.dart';
 export 'widget_load_more_horizontal.dart';
 export 'widget_avatar.dart';
+export 'widget_setting.dart';
+export 'widget_circle_progress.dart';

@@ -1,6 +1,5 @@
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/resources/resources.dart';
-import 'package:werewolf_client/app/routes/app_pages.dart';
 import 'package:werewolf_client/app/ui/base/base_controller.dart';
 
 class NavigationController extends BaseController with SocketListener {
@@ -10,10 +9,6 @@ class NavigationController extends BaseController with SocketListener {
   void onInit() async {
     super.onInit();
     service = await SocketService.instance(this);
-  }
-
-  playNow() async {
-    Get.toNamed(Routes.ROOM);
   }
 
   @override

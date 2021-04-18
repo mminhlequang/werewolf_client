@@ -16,4 +16,6 @@ class AppEndpoint {
   static const String POST_SIGN_IN = "/api/post/signIn";
 
   static const String GET_PROFILE = "/api/get/profile";
+
+  static const String GET_ROLES = "/api/get/roles";
 }

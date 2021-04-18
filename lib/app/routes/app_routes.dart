@@ -9,5 +9,7 @@ abstract class Routes{
   static const SIGN_UP = '/sign_up';
 
   static const NAVIGATION = '/navigation';
+
+  static const GUIDE = '/guide';
   static const ROOM = '/room';
 }

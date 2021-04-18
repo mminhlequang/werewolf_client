@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:werewolf_client/app/constants/app_colors.dart';
-import 'package:werewolf_client/app/constants/app_text_theme.dart';
+import 'package:werewolf_client/app/constants/constants.dart';
 import 'package:werewolf_client/app/resources/resources.dart';
 import 'package:werewolf_client/app/ui/room/room.dart';
 
+import '../../ui.dart';
 import 'widget_room_roles.dart';
-import 'widget_setting.dart';
 
 class WidgetHeaderRoom extends StatelessWidget {
   @override

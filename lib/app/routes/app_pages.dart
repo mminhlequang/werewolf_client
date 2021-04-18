@@ -13,6 +13,9 @@ class AppPages {
     GetPage(name: Routes.SIGN_UP, page:()=> SignUpScreen(), binding: SignUpBinding()),
 
     GetPage(name: Routes.NAVIGATION, page:()=> NavigationScreen(), binding: NavigationBinding()),
+
+    GetPage(name: Routes.GUIDE, page:()=> GuideScreen(), binding: GuideBinding()),
+
     GetPage(name: Routes.ROOM, page:()=> RoomScreen(), binding: RoomBinding()),
   ];
 }

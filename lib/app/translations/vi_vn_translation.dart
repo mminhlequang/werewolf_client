@@ -34,5 +34,10 @@ final Map<String, String> viVN = {
   'music' : 'Âm nhạc',
   'music_background' : 'Nhạc nền',
   'done' : 'Xong',
-  'all_role_in_room' : 'Tất cả vai trò trong phòng'
+  'all_role_in_room' : 'Tất cả vai trò trong phòng',
+  'guide' : 'Hướng dẫn',
+  'role_classic' : 'Nhân vật cổ điển',
+  'role_all' : 'Tất cả nhân vật',
+  'how_to_play' : 'Cách chơi',
+  'tip_to_play' : 'Mẹo khi chơi',
 };

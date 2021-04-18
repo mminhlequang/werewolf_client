@@ -36,8 +36,8 @@ class AppApiImp extends AppApi {
     bool isDisconnect = await WifiService.isDisconnect();
     if (isDisconnect) return NetworkResponse.withDisconnect();
     try {
-      Response response = await AppClients().post(AppEndpoint.POST_SIGN_IN,
-          data: data);
+      Response response =
+          await AppClients().post(AppEndpoint.POST_SIGN_IN, data: data);
       return NetworkResponse.fromResponse(response, converter: converter);
     } on DioError catch (e) {
       return NetworkResponse.withErrorRequest(e);
@@ -51,6 +51,32 @@ class AppApiImp extends AppApi {
     try {
       Response response =
           await AppClients().post(AppEndpoint.POST_SIGN_UP, data: data);
+      return NetworkResponse.fromResponse(response, converter: converter);
+    } on DioError catch (e) {
+      return NetworkResponse.withErrorRequest(e);
+    }
+  }
+
+  @override
+  Future<NetworkResponse<T>> getRoleAll<T>(converter) async {
+    bool isDisconnect = await WifiService.isDisconnect();
+    if (isDisconnect) return NetworkResponse.withDisconnect();
+    try {
+      Response response = await AppClients()
+          .get(AppEndpoint.GET_ROLES, queryParameters: {'type': 'all'});
+      return NetworkResponse.fromResponse(response, converter: converter);
+    } on DioError catch (e) {
+      return NetworkResponse.withErrorRequest(e);
+    }
+  }
+
+  @override
+  Future<NetworkResponse<T>> getRoleClassic<T>(converter) async {
+    bool isDisconnect = await WifiService.isDisconnect();
+    if (isDisconnect) return NetworkResponse.withDisconnect();
+    try {
+      Response response = await AppClients()
+          .get(AppEndpoint.GET_ROLES, queryParameters: {'type': 'classic'});
       return NetworkResponse.fromResponse(response, converter: converter);
     } on DioError catch (e) {
       return NetworkResponse.withErrorRequest(e);

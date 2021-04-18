@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:werewolf_client/app/constants/constants.dart';
 import 'package:werewolf_client/app/extensions/extensions.dart';
-import 'package:werewolf_client/app/ui/ui.dart';
 
 class WidgetRoomSetting extends StatefulWidget {
   final bool music;
@@ -17,14 +16,12 @@ class WidgetRoomSetting extends StatefulWidget {
 class _WidgetRoomSettingState extends State<WidgetRoomSetting> {
   bool sound;
   bool music;
-  RoomController controller;
 
   @override
   void initState() {
     super.initState();
     sound = widget.sound;
     music = widget.music;
-    controller = Get.find<RoomController>();
   }
 
   @override
@@ -64,7 +61,6 @@ class _WidgetRoomSettingState extends State<WidgetRoomSetting> {
                     value: music,
                     onChanged: (val) {
                       setState(() => music = val);
-                      controller.changeMusicSetting(val);
                     })
               ],
             ),
@@ -82,7 +78,6 @@ class _WidgetRoomSettingState extends State<WidgetRoomSetting> {
                     value: sound,
                     onChanged: (val) {
                       setState(() => sound = val);
-                      controller.changeSoundSetting(val);
                     })
               ],
             ),
