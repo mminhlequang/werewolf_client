@@ -1,7 +1,7 @@
 class AppEndpoint {
   AppEndpoint._();
 
-  static const String BASE_URL = "http://172.20.10.2:8888";
+  static const String BASE_URL = "http://172.20.10.2:3000";
 
   static const String BASE_URL_SOCKET = "http://172.20.10.2:3000";
 

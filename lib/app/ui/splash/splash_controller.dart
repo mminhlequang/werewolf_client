@@ -14,6 +14,8 @@ class SplashController extends BaseController {
     super.onInit();
     await getConfig();
     await getProfile();
+    var x;
+    print(x.adsd);
   }
 
   Future getConfig() async {

@@ -36,10 +36,18 @@ class AuthRepository {
         };
         break;
       case SignInType.google:
-        params = {'type': describeEnum(type)};
+        params = {
+          'id': result.id,
+          'accessToken': result.accessToken,
+          'type': describeEnum(type)
+        };
         break;
       case SignInType.facebook:
-        params = {'type': describeEnum(type)};
+        params = {
+          'id': result.id,
+          'accessToken': result.accessToken,
+          'type': describeEnum(type)
+        };
         break;
       default:
         break;

@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:sentry_flutter/sentry_flutter.dart';
 import 'package:werewolf_client/app/utils/utils.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart' as DotEnv;
 
@@ -22,17 +23,22 @@ void main() async {
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
   await GetStorage.init("AppPref");
   AppPref.initListener();
-
-  runApp(GetMaterialApp(
-    debugShowCheckedModeBanner: false,
-    initialBinding: SplashBinding(),
-    initialRoute: Routes.SPLASH,
-    theme: appThemeData,
-    defaultTransition: Transition.fadeIn,
-    getPages: AppPages.pages,
-    home: SplashScreen(),
-    locale: Locale('vi', 'VN'),
-    translationsKeys: AppTranslation.translations,
-    builder: EasyLoading.init(),
-  ));
+  await SentryFlutter.init(
+    (options) {
+      options.dsn =
+          'https://351b36f15056413b898ddd2a18e9f8ac@o596963.ingest.sentry.io/5742630';
+    },
+    appRunner: () => runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      initialBinding: SplashBinding(),
+      initialRoute: Routes.SPLASH,
+      theme: appThemeData,
+      defaultTransition: Transition.fadeIn,
+      getPages: AppPages.pages,
+      home: SplashScreen(),
+      locale: Locale('vi', 'VN'),
+      translationsKeys: AppTranslation.translations,
+      builder: EasyLoading.init(),
+    )),
+  );
 }
